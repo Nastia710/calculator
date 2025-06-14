@@ -5,8 +5,124 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Calculator" Height="520" Width="360" MinWidth="360" MinHeight="520">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="27"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="5,5,5,5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Focusable" Value="False"/>
+
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFE2E2E2" Offset="0.375"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid x:Name="grid" Cursor="Hand">
+        <!--#region Row & Column defs-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--#endregion-->
+
+        <!--undo button-->
+        <Button x:Name="RedoBtn" Grid.Row="0" Grid.Column="3"
+                Height="35" Width="70"
+                BorderBrush="Transparent" 
+                Background="Transparent"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Margin="0,5,0,0"
+                Content="Redo" FontStyle="Italic" FontWeight="Regular"/>
+        <!--upper left button-->
+        <Button x:Name="SandwichButton"
+                Grid.Row="0" Grid.Column="0"
+                Content="☰"
+                FontSize="35"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Height="45" Width="45"
+                Background="Transparent"
+                Margin="0,0,0,0" BorderThickness="0,0,0,0"/>
+
+        <!--display-->
+        <TextBox IsReadOnly="True" Background="Transparent" BorderThickness="0"
+                 Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Right"
+                 x:Name="display" VerticalAlignment="Bottom"
+                 FontSize="35"
+                 Margin="10,10,10,10"
+                 FlowDirection="LeftToRight"
+                 Text="{Binding Text}"/>
+
+        <!--waiting for operation display-->
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="5"
+                   Margin="10,60,10,50"
+                   Foreground="Black"
+                   FontSize="25"
+                   x:Name="waitingDisplay"
+                   Background="Transparent"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   Text="{Binding WaitingText}"/>
+
+        <!--first row-->
+        <Button Grid.Row="1" Grid.Column="0" Content="CE" Background="#FFF9F9F9"/>
+        <Button Grid.Row="1" Grid.Column="1" Content="C" Background="#FFF9F9F9"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="⌫" FontSize="20" BorderThickness="1,1,1,1" Background="#FFF9F9F9"/>
+        <Button Grid.Row="1" Grid.Column="3" Content="÷" Background="#FFF9F9F9"/>
+        <!--second row-->
+        <Button Grid.Row="2" Grid.Column="0" Content="1" >
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFFFDFD"/>
+                    <GradientStop Color="#FFF9F9F9" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="1" Content="2" Background="#FFFAFAFA"/>
+        <Button Grid.Row="2" Grid.Column="2" Content="3" Background="#FFFAFAFA"/>
+        <Button Grid.Row="2" Grid.Column="3" Content="×" Background="#FFFAFAFA"/>
+
+        <!--third row-->
+        <Button Grid.Row="3" Grid.Column="0" Content="4" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
+        <Button Grid.Row="3" Grid.Column="1" Content="5" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
+        <Button Grid.Row="3" Grid.Column="2" Content="6" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
+        <Button Grid.Row="3" Grid.Column="3" Content="-" Background="#FFF9F9F9"/>
+
+        <!--fourth row-->
+        <Button Grid.Row="4" Grid.Column="0" Content="7" BorderBrush="#FF707070" Background="#FFFDFCFC"/>
+        <Button Grid.Row="4" Grid.Column="1" Content="8" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
+        <Button Grid.Row="4" Grid.Column="2" Content="9" BorderBrush="#FF707070" Background="#FFFDFCFC"/>
+        <Button Grid.Row="4" Grid.Column="3" Content="+" Background="#FFFDFCFC"/>
+
+        <!--fifth row-->
+        <Button Grid.Row="5" Grid.Column="0" Content="00" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
+        <Button Grid.Row="5" Grid.Column="1" Content="0" BorderBrush="#FF707070" Background="#FFFDFCFC"/>
+        <Button Grid.Row="5" Grid.Column="2" Content="," BorderBrush="#FF707070" Background="#FFF9F9F9"/>
+        <Button Grid.Row="5" Grid.Column="3" Content="=" Background="#FF0A8DFF"/>
 
     </Grid>
 </Window>
