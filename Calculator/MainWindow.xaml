@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
-        Title="Calculator" Height="520" Width="360" MinWidth="360" MinHeight="520">
+        Title="Calculator" Height="540" Width="355" MinWidth="280" MinHeight="520">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -44,7 +44,7 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto" MinWidth="0"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <!--#endregion-->
 
@@ -66,7 +66,7 @@
                 HorizontalAlignment="Left"
                 Height="45" Width="45"
                 Background="Transparent"
-                Margin="0,0,0,0" BorderThickness="0,0,0,0"/>
+                Margin="0,0,0,0" BorderThickness="0,0,0,0" Click="SandwichButton_Click"/>
 
         <!--display-->
         <TextBox IsReadOnly="True" Background="Transparent" BorderThickness="0"
@@ -75,7 +75,7 @@
                  FontSize="35"
                  Margin="10,10,10,10"
                  FlowDirection="LeftToRight"
-                 Text="{Binding Text}"/>
+                 Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" Height="55"/>
 
         <!--waiting for operation display-->
         <TextBlock Grid.Column="0" Grid.ColumnSpan="5"
@@ -86,15 +86,15 @@
                    Background="Transparent"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Bottom"
-                   Text="{Binding WaitingText}"/>
+                   Text="{Binding WaitingText, UpdateSourceTrigger=PropertyChanged}"/>
 
         <!--first row-->
-        <Button Grid.Row="1" Grid.Column="0" Content="CE" Background="#FFF9F9F9"/>
-        <Button Grid.Row="1" Grid.Column="1" Content="C" Background="#FFF9F9F9"/>
-        <Button Grid.Row="1" Grid.Column="2" Content="⌫" FontSize="20" BorderThickness="1,1,1,1" Background="#FFF9F9F9"/>
-        <Button Grid.Row="1" Grid.Column="3" Content="÷" Background="#FFF9F9F9"/>
+        <Button x:Name="CEBtn" Grid.Row="1" Grid.Column="0" Content="CE" Background="#FFF9F9F9"/>
+        <Button x:Name="CBtn" Grid.Row="1" Grid.Column="1" Content="C" Background="#FFF9F9F9"/>
+        <Button x:Name="BackspaceBtn" Grid.Row="1" Grid.Column="2" Content="⌫" FontSize="20" BorderThickness="1,1,1,1" Background="#FFF9F9F9"/>
+        <Button x:Name="DivideBtn" Grid.Row="1" Grid.Column="3" Content="÷" Background="#FFF9F9F9"/>
         <!--second row-->
-        <Button Grid.Row="2" Grid.Column="0" Content="1" >
+        <Button x:Name="Btn1" Grid.Row="2" Grid.Column="0" Content="1" >
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFFFFDFD"/>
@@ -102,27 +102,27 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Grid.Row="2" Grid.Column="1" Content="2" Background="#FFFAFAFA"/>
-        <Button Grid.Row="2" Grid.Column="2" Content="3" Background="#FFFAFAFA"/>
-        <Button Grid.Row="2" Grid.Column="3" Content="×" Background="#FFFAFAFA"/>
+        <Button x:Name="Btn2" Grid.Row="2" Grid.Column="1" Content="2" Background="#FFFAFAFA"/>
+        <Button x:Name="Btn3" Grid.Row="2" Grid.Column="2" Content="3" Background="#FFFAFAFA"/>
+        <Button x:Name="MultiplyBtn" Grid.Row="2" Grid.Column="3" Content="×" Background="#FFFAFAFA"/>
 
         <!--third row-->
-        <Button Grid.Row="3" Grid.Column="0" Content="4" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
-        <Button Grid.Row="3" Grid.Column="1" Content="5" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
-        <Button Grid.Row="3" Grid.Column="2" Content="6" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
-        <Button Grid.Row="3" Grid.Column="3" Content="-" Background="#FFF9F9F9"/>
+        <Button x:Name="Btn4" Grid.Row="3" Grid.Column="0" Content="4" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
+        <Button x:Name="Btn5" Grid.Row="3" Grid.Column="1" Content="5" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
+        <Button x:Name="Btn6" Grid.Row="3" Grid.Column="2" Content="6" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
+        <Button x:Name="MinusBtn" Grid.Row="3" Grid.Column="3" Content="-" Background="#FFF9F9F9"/>
 
         <!--fourth row-->
-        <Button Grid.Row="4" Grid.Column="0" Content="7" BorderBrush="#FF707070" Background="#FFFDFCFC"/>
-        <Button Grid.Row="4" Grid.Column="1" Content="8" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
-        <Button Grid.Row="4" Grid.Column="2" Content="9" BorderBrush="#FF707070" Background="#FFFDFCFC"/>
-        <Button Grid.Row="4" Grid.Column="3" Content="+" Background="#FFFDFCFC"/>
+        <Button x:Name="Btn7" Grid.Row="4" Grid.Column="0" Content="7" BorderBrush="#FF707070" Background="#FFFDFCFC"/>
+        <Button x:Name="Btn8" Grid.Row="4" Grid.Column="1" Content="8" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
+        <Button x:Name="Btn9" Grid.Row="4" Grid.Column="2" Content="9" BorderBrush="#FF707070" Background="#FFFDFCFC"/>
+        <Button x:Name="PlusBtn" Grid.Row="4" Grid.Column="3" Content="+" Background="#FFFDFCFC"/>
 
         <!--fifth row-->
-        <Button Grid.Row="5" Grid.Column="0" Content="00" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
-        <Button Grid.Row="5" Grid.Column="1" Content="0" BorderBrush="#FF707070" Background="#FFFDFCFC"/>
-        <Button Grid.Row="5" Grid.Column="2" Content="," BorderBrush="#FF707070" Background="#FFF9F9F9"/>
-        <Button Grid.Row="5" Grid.Column="3" Content="=" Background="#FF0A8DFF"/>
+        <Button x:Name="Btn00" Grid.Row="5" Grid.Column="0" Content="00" BorderBrush="#FF707070" Background="#FFF9F9F9"/>
+        <Button x:Name="Btn0" Grid.Row="5" Grid.Column="1" Content="0" BorderBrush="#FF707070" Background="#FFFDFCFC"/>
+        <Button x:Name="CommaBtn" Grid.Row="5" Grid.Column="2" Content="," BorderBrush="#FF707070" Background="#FFF9F9F9"/>
+        <Button x:Name="EqualsBtn" Grid.Row="5" Grid.Column="3" Content="=" Background="#FF0A8DFF"/>
 
     </Grid>
 </Window>
