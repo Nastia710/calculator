@@ -13,21 +13,21 @@ namespace Calculator
     {
         public string Expression { get; set; }
         public string DisplayText { get; set; }
-        public bool isNewOp { get; set; }
-        public bool isError { get; set; }
-        public bool isSandwichBtnClk { get; set; }
+        public bool IsNewOp { get; set; }
+        public bool IsError { get; set; }
+        public bool IsSandwichBtnClk { get; set; }
 
         public Calculator()
         {
             Expression = "";
             DisplayText = "0";
-            isNewOp = true;
-            isError = false;
+            IsNewOp = true;
+            IsError = false;
         }
 
         public void DisplayError()
         {
-            isError = false;
+            IsError = false;
             Clear();
         }
 
@@ -35,20 +35,20 @@ namespace Calculator
         {
             Expression = "";
             DisplayText = "Error";
-            isNewOp = true;
-            isError = true;
+            IsNewOp = true;
+            IsError = true;
         }
 
         public void Clear()
         {
             Expression = "";
             DisplayText = "0";
-            isNewOp = true;
+            IsNewOp = true;
         }
 
         public void Backspace()
         {
-            if(isError)
+            if(IsError)
             {
                 ResetError();
                 return;
@@ -56,7 +56,7 @@ namespace Calculator
             if (DisplayText.Length == 1 || (DisplayText.Length == 2 && DisplayText[0] == '-'))
             {
                 DisplayText = "0";
-                isNewOp = true;
+                IsNewOp = true;
             }
             else
             {
@@ -66,14 +66,14 @@ namespace Calculator
 
         public void AddNumber(string number)
         {
-            if(isError)
+            if(IsError)
             {
                 ResetError();
             }
-            if(isNewOp)
+            if(IsNewOp)
             {
                 DisplayText = number;
-                isNewOp = false;
+                IsNewOp = false;
             }
             else
             {
@@ -90,14 +90,14 @@ namespace Calculator
 
         public void AddDot()
         {
-            if (isError)
+            if (IsError)
             {
                 ResetError();
             }
-            if (isNewOp)
+            if (IsNewOp)
             {
                 DisplayText = "0,";
-                isNewOp = false;
+                IsNewOp = false;
             }
             else if(!DisplayText.Contains(","))
             {
@@ -107,12 +107,23 @@ namespace Calculator
 
         public void AddOp(string op)
         {
-            if (isError)
+            if (IsError)
             {
                 ResetError();
             }
             Expression = $"{DisplayText} {op}";
-            isNewOp = true;
+            IsNewOp = true;
         }
+
+        public void Undo()
+        {
+
+        }
+
+        public void Rendo()
+        {
+
+        }
+
     }
 }

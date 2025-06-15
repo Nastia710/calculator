@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System;
+using static Calculator.Command;
 /*using Calculator.Commands;*/
 
 namespace Calculator
@@ -20,6 +21,8 @@ namespace Calculator
     /// </summary>
     public partial class MainWindow : Window
     {
+        Calculator calculator;
+
         private readonly Button sqrt = new Button() 
         { 
             Content = "√",
@@ -51,6 +54,11 @@ namespace Calculator
         public MainWindow()
         {
             InitializeComponent();
+
+            calculator = new Calculator();
+
+            Update();
+
             originalWidth = Width;
 
             Grid.SetColumn(sqrt, 4);
@@ -109,6 +117,35 @@ namespace Calculator
                 grid.Children.Remove(ln);
 
                 isExpanded = false;
+            }
+        }
+
+        private void Update()
+        {
+            waitingDisplay.Text = calculator.Expression;
+            display.Text = calculator.DisplayText;
+        }
+
+        private void CBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Undo_Click(object sender, RoutedEventArgs e)
+        {
+            calculator.Undo();
+            Update();
+        }
+
+        private void BackspaceBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(calculator.IsError)
+            {
+                return;
+            }
+            if(!calculator.IsNewOp && calculator.DisplayText.Length > 0)
+            {
+
             }
         }
     }

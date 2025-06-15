@@ -89,9 +89,9 @@
                    Text="{Binding WaitingText, UpdateSourceTrigger=PropertyChanged}"/>
 
         <!--first row-->
-        <Button x:Name="CEBtn" Grid.Row="1" Grid.Column="0" Content="CE" Background="#FFF9F9F9"/>
-        <Button x:Name="CBtn" Grid.Row="1" Grid.Column="1" Content="C" Background="#FFF9F9F9"/>
-        <Button x:Name="BackspaceBtn" Grid.Row="1" Grid.Column="2" Content="⌫" FontSize="20" BorderThickness="1,1,1,1" Background="#FFF9F9F9"/>
+        <Button x:Name="Undo" Grid.Row="1" Grid.Column="0" Content="CE" Background="#FFF9F9F9" Click="Undo_Click"/>
+        <Button x:Name="CBtn" Grid.Row="1" Grid.Column="1" Content="C" Background="#FFF9F9F9" Click="CBtn_Click"/>
+        <Button x:Name="BackspaceBtn" Grid.Row="1" Grid.Column="2" Content="⌫" FontSize="20" BorderThickness="1,1,1,1" Background="#FFF9F9F9" Click="BackspaceBtn_Click"/>
         <Button x:Name="DivideBtn" Grid.Row="1" Grid.Column="3" Content="÷" Background="#FFF9F9F9"/>
         <!--second row-->
         <Button x:Name="Btn1" Grid.Row="2" Grid.Column="0" Content="1" >
